@@ -2,7 +2,7 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 const path = require('path');
-const { v4: uuid } = require('uuid');
+
 
 
 
@@ -24,11 +24,7 @@ app.get('/search', async (req, res) => {
 
     const sources = data.articles.map(item => item.source.name);
 
-    const ids = data.articles.map(item => {
-        item.id = uuid();
-        return item;
-    }
-    )
+   
 
 
     res.render('home', {
@@ -42,14 +38,7 @@ app.get('/search', async (req, res) => {
 
     })
 })
-app.get('/search/:id', async (req, res) => {
-    const query = req.query.query;
-    const response = await axios.get(`https://newsapi.org/v2/everything?q=${query}&language=en&apiKey=893537fec34b4b71be4743752ed4c545`);
-    const data = response.data;
-    const { id } = req.params;
-    const article = data.articles.find(article => article.id === id);
-    res.render('newPage', { article });
-});
+
 
 
 
