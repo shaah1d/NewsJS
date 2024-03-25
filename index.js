@@ -34,7 +34,7 @@ app.get('/search', async (req, res) => {
         images: images,
         authors: authors,
         sources: sources,
-        ids: ids,
+ 
 
     })
 })
