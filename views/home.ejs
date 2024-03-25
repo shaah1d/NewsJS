@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> <%= query %> - NewsJS
+    <title>
+        <%= query %> - NewsJS
 
     </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-       /* styles.css */
-       .recipe-item {
-    margin-bottom: 10px; /* Add some space between each recipe item */
-    width: calc(33.33% - 20px); /* Set width to 1/3 of the container width */
-    float: left; /* Float items to the left */
-    margin-right: 20px; /* Add some space between items */
-    border: 2px solid black;
-    padding: 10px; /* Add padding to the container */
-    /* border-radius: 10px; */
-    box-sizing: border-box; /* Include padding and border in the total width */
-}
+        /* styles.css */
+        .recipe-item {
+            margin-bottom: 10px;
+            /* Add some space between each recipe item */
+            width: calc(33.33% - 20px);
+            /* Set width to 1/3 of the container width */
+            float: left;
+            /* Float items to the left */
+            margin-right: 20px;
+            /* Add some space between items */
+            border: 2px solid black;
+            padding: 10px;
+            /* Add padding to the container */
+            /* border-radius: 10px; */
+            box-sizing: border-box;
+            /* Include padding and border in the total width */
+        }
 
-.recipe-item img {
-    width: 100%; /* Make the image fill the container width */
-    height: auto; /* Maintain aspect ratio */
-    max-height: calc(16rem - 20px); /* Set maximum height to fit inside the container */
-    margin-bottom: 2px; /* Add some space below the image */
-}
+        .recipe-item img {
+            width: 100%;
+            /* Make the image fill the container width */
+            height: auto;
+            /* Maintain aspect ratio */
+            max-height: calc(16rem - 20px);
+            /* Set maximum height to fit inside the container */
+            margin-bottom: 2px;
+            /* Add some space below the image */
+        }
 
-/* Clear the float after every third item */
-.recipe-item:nth-child(3n+3) {
-    margin-right: 0; /* Remove margin on the third item of each row */
-}
+        /* Clear the float after every third item */
+        .recipe-item:nth-child(3n+3) {
+            margin-right: 0;
+            /* Remove margin on the third item of each row */
+        }
 
-/* Clear the float after every row */
-.recipe-item:nth-child(3n+4) {
-    clear: both; /* Move to the next line */
-}
+        /* Clear the float after every row */
+        .recipe-item:nth-child(3n+4) {
+            clear: both;
+            /* Move to the next line */
+        }
 
         a {
             text-decoration: underline;
@@ -44,45 +59,63 @@
             font-weight: 600;
             display: block;
         }
+
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
+
         ul {
             list-style: none;
             padding-left: 0;
         }
-       p {
-        color: black;
+
+        p {
+            color: black;
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 2px;
-       }
-       .source {
-        text-decoration: none;
-        color: black;
-        display: block;
-       }
-     
+        }
+
+        .source {
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
+
+        form {
+            width: 80%;
+            display: flex;
+        }
+        
+
     </style>
 </head>
+
 <body>
-    <form action="/search" method="GET">
-        <input type="text" name="query" placeholder="Search"> 
-        <button type="submit" class="text-center btn btn-primary">Search</button>
+    <form action="/search" class="search" method="GET">
+
+        <input type="text" name="query" placeholder="Search" class="search__field">
+        <button type="submit">Submit</button>
+    
+
     </form>
-  
-     <div class="container">
+
+    <div class="container">
         <ul>
             <% for(let i=0; i<titles.length; i++) { %>
-            <div class="recipe-item">
-                <img src="<%= images[i] %>" alt="">
-                <a class="source" href="http://<%= sources[i] %>"><%= sources[i] %></a>
-                <a href=<%= urls[i] %>> <%= titles[i] %> </a>
-            </div>
-            <% } %>
+                <div class="recipe-item col-md-6">
+                    <img src="<%= images[i] %>" alt="" <a class="source" href="http://<%= sources[i] %>">
+                    <%= sources[i] %></a>
+                    <a href="/search/<%= ids[i].id %>">
+                        <%= titles[i] %> 
+                    </a>
+                    
+                    
+                </div>
+                <% } %>
         </ul>
-     </div>
-
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
